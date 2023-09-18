@@ -13,7 +13,7 @@ curl --proto '=https' --tlsv1.2 -sSf -L https://install.determinate.systems/nix 
 ```bash
 sudo mv /etc/nix/nix.conf /etc/nix/nix.conf.before-nix-darwin
 sudo mv /etc/shells /etc/shells.before-nix-darwin
-sudo mv ~/.bash_profile ~.bash_profile.bak
+sudo mv ~/.bash_profile ~/.bash_profile.bak
 sudo mv ~/.zshrc ~/.zshrc.bak
 ```
 
@@ -25,6 +25,7 @@ cd nix-config
 make darwin
 ```
 
-## Notes:
+## Notes
 reference from [ryan4yin nix template](https://github.com/ryan4yin/nix-darwin-kickstarter/)
+
 
