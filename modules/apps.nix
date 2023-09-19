@@ -20,7 +20,7 @@
   environment.systemPackages = with pkgs; [
     neovim
     git
-    python3
+    #python3
   ];
   environment.variables.EDITOR = "nvim";
 

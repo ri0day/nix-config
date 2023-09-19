@@ -23,6 +23,10 @@
     aria2 # A lightweight multi-protocol & multi-source command-line download utility
     socat # replacement of openbsd-netcat
     nmap # A utility for network discovery and security auditing
+    azure-cli
+    awscli2
+    aws-vault
+    aliyun-cli
 
     # misc
     cowsay
