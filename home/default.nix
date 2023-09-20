@@ -1,8 +1,9 @@
-{ ... }:
+{ pkgs,... }:
 
 let
   # please replace xxx with your username
   username = "mason.wu";
+  alicloud-vault = pkgs.callPackage ./alicloud-vault.nix {};
 in
 {
   # import sub modules
@@ -13,6 +14,9 @@ in
     ./git.nix
     ./starship.nix
   ];
+home.packages = with pkgs; [
+  alicloud-vault
+];
 
   # Home Manager needs a bit of information about you and the
   # paths it should manage.
