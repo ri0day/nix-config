@@ -1,9 +1,9 @@
-{ pkgs,... }:
+{ pkgs,nixpkgs-unstable,... }:
 
 let
   # please replace xxx with your username
   username = "mason.wu";
-  alicloud-vault = pkgs.callPackage ./alicloud-vault.nix {};
+  alicloud-vault = pkgs.callPackage ./alicloud-vault.nix {}; #non-nixpkgs package
 in
 {
   # import sub modules
@@ -15,7 +15,8 @@ in
     ./starship.nix
   ];
 home.packages = with pkgs; [
-  alicloud-vault
+  alicloud-vault 
+  nixpkgs-unstable.legacyPackages.x86_64-darwin.otel-cli #unstable pkgs
 ];
 
   # Home Manager needs a bit of information about you and the

@@ -15,18 +15,27 @@
     jq # A lightweight and flexible command-line JSON processor
     yq-go # yaml processer https://github.com/mikefarah/yq
     fzf # A command-line fuzzy finder
-    kubectl
     age
-    sops
     inetutils #telnet
 
     aria2 # A lightweight multi-protocol & multi-source command-line download utility
     socat # replacement of openbsd-netcat
     nmap # A utility for network discovery and security auditing
+    
+    # cloud devops cli
     azure-cli
     awscli2
     aws-vault
     aliyun-cli
+    kubie
+    k9s
+    kubectl
+    kubeswitch
+    sops
+    bitwarden-cli
+    sshuttle
+    direnv
+
 
     # misc
     cowsay

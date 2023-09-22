@@ -99,6 +99,7 @@
       #"raycast"   # (HotKey: alt/option + space)search, caculate and run scripts(with many plugins)
       "iglance"   # beautiful system monitor
       "eudic"     # 欧路词典
+      "warp"        #terminal
 
       # Development
       "insomnia"  # REST client

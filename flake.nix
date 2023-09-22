@@ -25,6 +25,9 @@
   # Each item in `inputs` will be passed as a parameter to the `outputs` function after being pulled and built.
   inputs = {
     nixpkgs-darwin.url = "github:nixos/nixpkgs/nixpkgs-23.05-darwin";
+    nixpkgs-unstable = {
+      url = "github:nixos/nixpkgs/nixpkgs-unstable";
+    };
 
     # home-manager, used for managing user configuration
     home-manager = {
@@ -46,7 +49,7 @@
   # parameters in `outputs` are defined in `inputs` and can be referenced by their names. 
   # However, `self` is an exception, this special parameter points to the `outputs` itself (self-reference)
   # The `@` syntax here is used to alias the attribute set of the inputs's parameter, making it convenient to use inside the function.
-  outputs = inputs@{ self, nixpkgs, darwin, home-manager, ... }:{
+  outputs = inputs@{ self, nixpkgs, nixpkgs-unstable, darwin, home-manager, ... }:{
     # TODO please update the whole "hostname" placeholder string to your own hostname!
     # such as darwinConfigurations.mymac = darwin.lib.darwinSystem {
     darwinConfigurations."masondeMacBook-Pro" = darwin.lib.darwinSystem {
