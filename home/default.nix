@@ -1,11 +1,12 @@
-{ pkgs,nixpkgs-unstable,... }:
-
-let
+{
+  pkgs,
+  nixpkgs-unstable,
+  ...
+}: let
   # please replace xxx with your username
   username = "mason.wu";
   alicloud-vault = pkgs.callPackage ./alicloud-vault.nix {}; #non-nixpkgs package
-in
-{
+in {
   # import sub modules
   imports = [
     ./zsh.nix
@@ -14,10 +15,11 @@ in
     ./git.nix
     ./starship.nix
   ];
-home.packages = with pkgs; [
-  alicloud-vault 
-  nixpkgs-unstable.legacyPackages.x86_64-darwin.otel-cli #unstable pkgs
-];
+  home.packages = with pkgs; [
+    alicloud-vault
+    nixpkgs-unstable.legacyPackages.x86_64-darwin.otel-cli #unstable pkgs
+    nixpkgs-unstable.legacyPackages.x86_64-darwin.saml2aws #unstable pkgs
+  ];
 
   # Home Manager needs a bit of information about you and the
   # paths it should manage.

@@ -1,6 +1,4 @@
-{ pkgs, ... }:
-
-{
+{pkgs, ...}: {
   home.packages = with pkgs; [
     nnn # terminal file manager
 
@@ -21,7 +19,7 @@
     aria2 # A lightweight multi-protocol & multi-source command-line download utility
     socat # replacement of openbsd-netcat
     nmap # A utility for network discovery and security auditing
-    
+
     # cloud devops cli
     azure-cli
     awscli2
@@ -35,7 +33,6 @@
     bitwarden-cli
     sshuttle
     direnv
-
 
     # misc
     cowsay

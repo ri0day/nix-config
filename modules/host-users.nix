@@ -1,18 +1,14 @@
-
-{ ... } @ args:
-
+{...} @ args:
 #############################################################
 #
 #  Host & Users configuration
 #
 #############################################################
-
 let
   # TODO change this to your hostname
   hostname = "masondeMacBook-Pro";
   username = "mason.wu";
-in
-{
+in {
   networking.hostName = hostname;
   networking.computerName = hostname;
   system.defaults.smb.NetBIOSName = hostname;
@@ -23,5 +19,5 @@ in
     description = username;
   };
 
-  nix.settings.trusted-users = [ username ];
+  nix.settings.trusted-users = [username];
 }

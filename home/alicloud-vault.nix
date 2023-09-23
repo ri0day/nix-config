@@ -1,4 +1,4 @@
-{ pkgs,... }:
+{pkgs, ...}:
 pkgs.stdenvNoCC.mkDerivation rec {
   name = "alicloud-vault";
   src = pkgs.fetchurl {
