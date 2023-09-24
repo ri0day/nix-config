@@ -29,6 +29,7 @@ pl["EnvironmentVariables"].update({
   "HOMEBREW_BREW_GIT_REMOTE": "https://mirrors.tuna.tsinghua.edu.cn/git/homebrew/brew.git",
   "HOMEBREW_CORE_GIT_REMOTE": "https://mirrors.tuna.tsinghua.edu.cn/git/homebrew/homebrew-core.git",
   "HOMEBREW_PIP_INDEX_URL": "https://pypi.tuna.tsinghua.edu.cn/simple",
+  "NIX_SSL_CERT_FILE": "/nix/var/nix/profiles/default/etc/ssl/certs/ca-bundle.crt"
 })
 
 os.chmod(NIX_DAEMON_PLIST, 0o644)

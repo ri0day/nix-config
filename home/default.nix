@@ -6,6 +6,9 @@
   # please replace xxx with your username
   username = "mason.wu";
   alicloud-vault = pkgs.callPackage ./alicloud-vault.nix {}; #non-nixpkgs package
+  ageWithoutTests = pkgs.age.overrideAttrs (_: {
+  doCheck = false;
+});
 in {
   # import sub modules
   imports = [
@@ -19,6 +22,7 @@ in {
     alicloud-vault
     nixpkgs-unstable.legacyPackages.x86_64-darwin.otel-cli #unstable pkgs
     nixpkgs-unstable.legacyPackages.x86_64-darwin.saml2aws #unstable pkgs
+    ageWithoutTests
   ];
 
   # Home Manager needs a bit of information about you and the
