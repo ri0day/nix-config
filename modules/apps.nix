@@ -55,6 +55,7 @@
 
       #Xcode = 497799835;
       Wechat = 836500024;
+      Bitwarden = 1352778147;
       # NeteaseCloudMusic = 944848654;
       # QQ = 451108668;
       # WeCom = 1189898970;  # Wechat for Work
@@ -100,6 +101,7 @@
       "eudic" # 欧路词典
       "warp" #terminal
 
+      "orbstack" #docker k8s on macos
       # Development
       "insomnia" # REST client
       "wireshark" # network analyzer
