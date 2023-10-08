@@ -100,6 +100,7 @@
       "iglance" # beautiful system monitor
       "eudic" # 欧路词典
       "warp" #terminal
+      "dropbox"
 
       "orbstack" #docker k8s on macos
       # Development
