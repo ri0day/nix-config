@@ -23,6 +23,7 @@ in {
     nixpkgs-unstable.legacyPackages.x86_64-darwin.otel-cli #unstable pkgs
     nixpkgs-unstable.legacyPackages.x86_64-darwin.saml2aws #unstable pkgs
     ageWithoutTests
+    nixpkgs-unstable.legacyPackages.x86_64-darwin.flyctl
   ];
 
   # Home Manager needs a bit of information about you and the
