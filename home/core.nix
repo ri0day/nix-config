@@ -1,6 +1,7 @@
 {pkgs, ...}: {
   home.packages = with pkgs; [
     nnn # terminal file manager
+    python310
 
     # archives
     zip
