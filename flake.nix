@@ -16,7 +16,6 @@
       # Replace official cache with a mirror located in China
       #
       # Feel free to remove this line if you are not in China
-      "https://mirrors.ustc.edu.cn/nix-channels/store?trusted=1"
       "https://cache.nixos.org"
     ];
   };
