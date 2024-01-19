@@ -33,6 +33,7 @@
     bitwarden-cli
     sshuttle
     direnv
+    fluxcd #for kubernetes flux cli v2
 
     # misc
     cowsay
