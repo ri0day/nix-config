@@ -22,6 +22,7 @@ in {
     alicloud-vault
     nixpkgs-unstable.legacyPackages.x86_64-darwin.otel-cli #unstable pkgs
     nixpkgs-unstable.legacyPackages.x86_64-darwin.saml2aws #unstable pkgs
+    nixpkgs-unstable.legacyPackages.x86_64-darwin.fluxcd # use latest version flux
     ageWithoutTests
     nixpkgs-unstable.legacyPackages.x86_64-darwin.flyctl
   ];
@@ -40,7 +41,7 @@ in {
     # You can update Home Manager without changing this value. See
     # the Home Manager release notes for a list of state version
     # changes in each release.
-    stateVersion = "23.05";
+    stateVersion = "23.11";
   };
 
   # Let Home Manager install and manage itself.
