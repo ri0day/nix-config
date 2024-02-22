@@ -8,6 +8,7 @@
       eval "$(direnv hook zsh)"
       export PATH="$PATH:$HOME/bin:$HOME/.local/bin:$HOME/go/bin"
       zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
+      source <(kubectl completion zsh)
     '';
 
     shellAliases = {
