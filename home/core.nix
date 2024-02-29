@@ -15,6 +15,12 @@
     yq-go # yaml processer https://github.com/mikefarah/yq
     fzf # A command-line fuzzy finder
     inetutils #telnet
+    skim #try some modern commands
+    procs
+    du-dust
+    bottom-rs
+    bat
+    mdcat
 
     aria2 # A lightweight multi-protocol & multi-source command-line download utility
     socat # replacement of openbsd-netcat
@@ -28,6 +34,7 @@
     kubie
     k9s
     kubectl
+    kubernetes-helm 
     kubeswitch
     sops
     bitwarden-cli
