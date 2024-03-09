@@ -25,6 +25,7 @@ in {
     nixpkgs-unstable.legacyPackages.x86_64-darwin.fluxcd # use latest version flux
     ageWithoutTests
     nixpkgs-unstable.legacyPackages.x86_64-darwin.flyctl
+    nixpkgs-unstable.legacyPackages.x86_64-darwin.eksctl
   ];
 
   # Home Manager needs a bit of information about you and the
