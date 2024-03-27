@@ -43,4 +43,5 @@ for cmd in (
 ):
     print(cmd)
     subprocess.run(shlex.split(cmd), capture_output=False)
-
+print("you may also need add proxy settings in /nix/store/*-builer.sh which use curl download files")
+print("for example: sudo vim  /nix/store/g0gn91m56b267ncx05w93kihyqia39cm-builder.sh , add curl -x http://xxx:7890 ")
