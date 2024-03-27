@@ -27,7 +27,6 @@
     nmap # A utility for network discovery and security auditing
 
     # cloud devops cli
-    azure-cli
     awscli2
     aws-vault
     aliyun-cli
@@ -55,6 +54,7 @@
 
     # productivity
     glow # markdown previewer in terminal
+    nodejs_20
   ];
 
   programs = {
