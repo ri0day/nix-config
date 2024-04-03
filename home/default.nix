@@ -27,6 +27,7 @@ in {
     nixpkgs-unstable.legacyPackages.x86_64-darwin.flyctl
     nixpkgs-unstable.legacyPackages.x86_64-darwin.eksctl
     nixpkgs-unstable.legacyPackages.x86_64-darwin.kubent #kubent check deprecated apis in you kubernetes cluster
+    nixpkgs-unstable.legacyPackages.x86_64-darwin.ssm-session-manager-plugin #kubent check deprecated apis in you kubernetes cluster
   ];
 
   # Home Manager needs a bit of information about you and the
