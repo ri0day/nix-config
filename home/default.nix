@@ -24,6 +24,7 @@ in {
     nixpkgs-unstable.legacyPackages.x86_64-darwin.saml2aws #unstable pkgs
     nixpkgs-unstable.legacyPackages.x86_64-darwin.fluxcd # use latest version flux
     ageWithoutTests
+    nixpkgs-unstable.legacyPackages.x86_64-darwin.croc
     nixpkgs-unstable.legacyPackages.x86_64-darwin.flyctl
     nixpkgs-unstable.legacyPackages.x86_64-darwin.eksctl
     nixpkgs-unstable.legacyPackages.x86_64-darwin.kubent #kubent check deprecated apis in you kubernetes cluster

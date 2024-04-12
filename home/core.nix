@@ -2,6 +2,7 @@
   home.packages = with pkgs; [
     nnn # terminal file manager
     python310
+    go_1_21
 
     # archives
     zip
