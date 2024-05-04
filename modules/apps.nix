@@ -57,6 +57,7 @@
       Wechat = 836500024;
       Bitwarden = 1352778147;
       # NeteaseCloudMusic = 944848654;
+      Coteditor = 1024640650;
       # QQ = 451108668;
       # WeCom = 1189898970;  # Wechat for Work
       # TecentMetting = 1484048379;
@@ -64,7 +65,6 @@
     };
 
     taps = [
-      "homebrew/cask"
       "homebrew/cask-fonts"
       "homebrew/services"
       "homebrew/cask-versions"
@@ -87,26 +87,26 @@
       "google-chrome"
       "visual-studio-code"
       "obsidian"
+      "stats"
+      "sloth"
+      "shottr"
+      "marta"
 
       # IM & audio & remote desktop & meeting
       "telegram"
       #"discord"
 
-      #"anki"
-      "clashx" # proxy tool
+      #"clashx" # proxy tool
       "iina" # video player
       "openinterminal-lite" # open current folder in terminal
       "syncthing" # file sync
-      #"raycast"   # (HotKey: alt/option + space)search, caculate and run scripts(with many plugins)
-      "iglance" # beautiful system monitor
+      "raycast"   # (HotKey: alt/option + space)search, caculate and run scripts(with many plugins)
       "eudic" # 欧路词典
       "warp" #terminal
       "dropbox"
 
       "orbstack" #docker k8s on macos
       # Development
-      "insomnia" # REST client
-      "wireshark" # network analyzer
     ];
   };
 }

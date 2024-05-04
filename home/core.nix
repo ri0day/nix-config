@@ -37,9 +37,14 @@
     kubernetes-helm 
     kubeswitch
     sops
+    age
     bitwarden-cli
     sshuttle
     direnv
+    saml2aws
+    croc
+    ssm-session-manager-plugin
+
 
     # misc
     cowsay
@@ -50,7 +55,6 @@
     gnutar
     gawk
     zstd
-    caddy
     gnupg
 
     # productivity

@@ -12,20 +12,14 @@
   nixConfig = {
     experimental-features = ["nix-command" "flakes"];
 
-    substituters = [
-      # Replace official cache with a mirror located in China
-      #
-      # Feel free to remove this line if you are not in China
-      "https://cache.nixos.org"
-    ];
   };
 
   # This is the standard format for flake.nix. `inputs` are the dependencies of the flake,
   # Each item in `inputs` will be passed as a parameter to the `outputs` function after being pulled and built.
   inputs = {
     nixpkgs-darwin.url = "github:nixos/nixpkgs/nixpkgs-23.11-darwin";
-    nixpkgs-unstable = {
-      url = "github:nixos/nixpkgs/nixpkgs-unstable";
+    nixpkgs = {
+      url = "github:nixos/nixpkgs/nixpkgs-unstable"; #use unstable channel by default
     };
 
     # home-manager, used for managing user configuration
@@ -51,15 +45,18 @@
   outputs = inputs @ {
     self,
     nixpkgs,
-    nixpkgs-unstable,
     darwin,
     home-manager,
     ...
-  }: {
-    # TODO please update the whole "hostname" placeholder string to your own hostname!
-    # such as darwinConfigurations.mymac = darwin.lib.darwinSystem {
-    darwinConfigurations."masondeMacBook-Pro" = darwin.lib.darwinSystem {
-      system = "x86_64-darwin"; # change this to "aarch64-darwin" if you are using Apple Silicon
+  }: let
+     username = "mason.wu";
+     useremail = "email@me.com";
+     system = "aarch64-darwin";
+     hostname = "m1max";
+     specialArgs = inputs // { inherit username useremail hostname;};
+  in {
+      darwinConfigurations."${hostname}" = darwin.lib.darwinSystem {
+      inherit system specialArgs;
       modules = [
         ./modules/nix-core.nix
         ./modules/system.nix
@@ -73,15 +70,14 @@
           home-manager.useGlobalPkgs = true;
           home-manager.useUserPackages = true;
 
-          home-manager.extraSpecialArgs = inputs;
+          home-manager.extraSpecialArgs = specialArgs;
 
-          # TODO replace "yourusername" with your own username!
-          home-manager.users."mason.wu" = import ./home;
+          home-manager.users.${username} = import ./home;
         }
       ];
     };
 
     # nix codee formmater
-    formatter.x86_64-darwin = nixpkgs.legacyPackages.x86_64-darwin.alejandra;
+    formatter.${system} = nixpkgs.legacyPackages.${system}.alejandra;
   };
 }

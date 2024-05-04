@@ -18,10 +18,10 @@ useproxy:
 
 darwin:
 	# TODO update hostname here!
-	nix build .#darwinConfigurations."masondeMacBook-Pro".system \
+	nix build .#darwinConfigurations.m1max.system \
 		--extra-experimental-features 'nix-command flakes'
 
-	./result/sw/bin/darwin-rebuild switch --flake .#masondeMacBook-Pro
+	./result/sw/bin/darwin-rebuild switch --flake .#m1max
 
 darwin-debug:
 	# TODO update hostname here!

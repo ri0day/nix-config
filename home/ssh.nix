@@ -1,5 +1,5 @@
 {...}: {
-  programs.ssh {
+  programs.ssh = {
   enable = true;
   matchBlocks = {
   "devopszoo" = {
@@ -11,8 +11,8 @@
   hostname = "github.com";
   user = "git";
   proxyCommand = "nc -x localhost:7897 %h %p";
-
   };
   };
 
+};
 }

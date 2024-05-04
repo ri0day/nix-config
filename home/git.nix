@@ -1,7 +1,7 @@
 {
-  config,
   lib,
-  pkgs,
+  username,
+  useremail,
   ...
 }: {
   # `programs.git` will generate the config file: ~/.config/git/config
@@ -17,8 +17,8 @@
     lfs.enable = true;
 
     # TODO replace with your own name & email
-    userName = "mason.wu";
-    userEmail = "mason.wu@shijigroup.com";
+    userName = username;
+    userEmail = useremail;
 
     includes = [
       {
@@ -32,6 +32,7 @@
       init.defaultBranch = "main";
       push.autoSetupRemote = true;
       pull.rebase = true;
+      http."https://github.com" = { proxy = "http://127.0.0.1:7897";};
     };
 
     # signing = {
