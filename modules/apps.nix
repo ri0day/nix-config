@@ -78,6 +78,8 @@
       "aria2" # download tool
       "httpie" # http client
       "crane" #container image tool
+      "terragrunt"
+      "terraform"
     ];
 
     # `brew install --cask`
@@ -104,6 +106,8 @@
       "eudic" # 欧路词典
       "warp" #terminal
       "dropbox"
+      "tunnelblick@beta"
+      "switchkey"
 
       "orbstack" #docker k8s on macos
       # Development
