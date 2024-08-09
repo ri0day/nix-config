@@ -3,7 +3,6 @@
     nnn # terminal file manager
     python310
     go_1_21
-    graphviz
 
     # archives
     zip
@@ -22,7 +21,8 @@
     du-dust
     bottom-rs
     bat
-    mdcat
+    zoxide
+    thefuck
 
     aria2 # A lightweight multi-protocol & multi-source command-line download utility
     socat # replacement of openbsd-netcat
@@ -85,6 +85,16 @@
     skim = {
       enable = true;
       enableBashIntegration = true;
+    };
+    #zoxide replace cd
+    zoxide = {
+      enable = true;
+      enableZshIntegration = true;
+    };
+    # commandline fixer
+    thefuck = {
+       enable = true;
+       enableZshIntegration = true;
     };
   };
 }
