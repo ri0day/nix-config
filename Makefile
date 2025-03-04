@@ -25,10 +25,10 @@ darwin:
 
 darwin-debug:
 	# TODO update hostname here!
-	nix build .#darwinConfigurations."masondeMacBook-Pro".system --show-trace --verbose \
+	nix build .#darwinConfigurations."m1max".system --show-trace --verbose \
 		--extra-experimental-features 'nix-command flakes'
 
-	./result/sw/bin/darwin-rebuild switch --flake .#masondeMacBook-Pro --show-trace --verbose
+	./result/sw/bin/darwin-rebuild switch --flake .#m1max --show-trace --verbose
 
 ############################################################################
 #

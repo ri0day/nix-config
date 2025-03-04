@@ -58,6 +58,7 @@
       Bitwarden = 1352778147;
       # NeteaseCloudMusic = 944848654;
       Coteditor = 1024640650;
+      WindowsApp = 1295203466;
       # QQ = 451108668;
       # WeCom = 1189898970;  # Wechat for Work
       # TecentMetting = 1484048379;

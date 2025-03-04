@@ -17,7 +17,7 @@
     username = username;
     homeDirectory = "/Users/${username}";
 
-    stateVersion = "23.11";
+    stateVersion = "24.11";
   };
 
   # Let Home Manager install and manage itself.

@@ -2,7 +2,7 @@
   home.packages = with pkgs; [
     nnn # terminal file manager
     python310
-    go_1_21
+    go_1_23
 
     # archives
     zip
@@ -39,7 +39,6 @@
     kubeswitch
     sops
     age
-    bitwarden-cli
     sshuttle
     direnv
     saml2aws
@@ -69,15 +68,6 @@
       enable = true;
       defaultEditor = true;
       vimAlias = true;
-    };
-
-    # A modern replacement for ‘ls’
-    # useful in bash/zsh prompt, not in nushell.
-    eza = {
-      enable = true;
-      enableAliases = true;
-      git = true;
-      icons = true;
     };
 
     # skim provides a single executable: sk.

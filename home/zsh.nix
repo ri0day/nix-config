@@ -1,9 +1,9 @@
 {...}: {
   programs.zsh = {
     enable = true;
+    autosuggestion.enable = true;
     enableCompletion = true;
     syntaxHighlighting.enable = true;
-    enableAutosuggestions = true;
     initExtra = ''
       eval "$(direnv hook zsh)"
       export PATH="$PATH:$HOME/bin:$HOME/.local/bin:$HOME/go/bin"
