@@ -12,7 +12,7 @@
   user = "git";
   proxyCommand = "nc -x localhost:7897 %h %p";
   };
-  };
 
+};
 };
 }
