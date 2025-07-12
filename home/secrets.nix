@@ -1,6 +1,5 @@
 {
 inputs,
-pkgs,
 ...
 }: {
   imports = [
@@ -18,4 +17,4 @@ pkgs,
       sops.secrets."nested/level1" = {};
     };
   };
-};
+}
