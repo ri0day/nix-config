@@ -1,21 +1,16 @@
 {
-inputs,
 config,
 ...
 }: {
-  imports = [
-    inputs.sops-nix.homeManagerModules.sops
-  ];
-
   sops = {
-    age.keyFile = "/Users/mason.wu/.config/sops/age/keys.txt";
-    defaultSopsFile = "/Users/mason.wu/nix-config/secrets/test-sec.yaml";
-    secrets.test = {
-      sopsFile = "/Users/mason.wu/nix-config/secrets/test-sec.yaml"; 
-      sops.secrets.example-key = {
-         path = "/Users/mason.wu/example-key.txt"; 
+    age.keyFile = "${config.home.homeDirectory}/.config/sops/age/keys.txt";
+    secrets.hello = {
+    sopsFile = "/tmp/test-sec.yaml";
+       path = "/tmp/mason-hello.txt";
       };
-      sops.secrets."nested/level1" = {};
+    secrets."nested/level1" = {
+    sopsFile = "/tmp/test-sec.yaml";
+       path = "/tmp/mason-nested-level1.txt";
+      };
     };
-  };
-}
+  }

@@ -35,6 +35,12 @@
       url = "github:lnl7/nix-darwin/nix-darwin-24.11";
       inputs.nixpkgs.follows = "nixpkgs-darwin";
     };
+
+    sops-nix = {
+      url = "github:Mic92/sops-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
   };
 
   # The `outputs` function will return all the build results of the flake.
@@ -46,6 +52,7 @@
     self,
     nixpkgs,
     darwin,
+    sops-nix,
     home-manager,
     ...
   }: let
@@ -63,10 +70,14 @@
         ./modules/apps.nix
 
         ./modules/host-users.nix
+	sops-nix.darwinModules.sops #expose sops-nix to global system level
 
         # home manager
         home-manager.darwinModules.home-manager
         {
+	  home-manager.sharedModules = [
+            sops-nix.homeManagerModules.sops     #expose sops-nix to home-manager level
+          ];
           home-manager.useGlobalPkgs = true;
           home-manager.useUserPackages = true;
 

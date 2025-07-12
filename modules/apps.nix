@@ -54,6 +54,7 @@
       # TODO Feel free to add your favorite apps here.
 
       #Xcode = 497799835;
+      JuxaText = 504801865;
       Wechat = 836500024;
       Bitwarden = 1352778147;
       # NeteaseCloudMusic = 944848654;
@@ -91,7 +92,6 @@
       "visual-studio-code"
       "obsidian"
       "stats"
-      "sloth"
       "shottr"
       "marta"
       "motrix"
@@ -103,7 +103,7 @@
       #"clashx" # proxy tool
       "iina" # video player
       "openinterminal-lite" # open current folder in terminal
-      "syncthing" # file sync
+      "syncthing-app" # file sync
       "raycast"   # (HotKey: alt/option + space)search, caculate and run scripts(with many plugins)
       "eudic" # 欧路词典
       "warp" #terminal
