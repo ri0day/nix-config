@@ -54,7 +54,6 @@
       # TODO Feel free to add your favorite apps here.
 
       #Xcode = 497799835;
-      JuxaText = 504801865;
       Wechat = 836500024;
       Bitwarden = 1352778147;
       # NeteaseCloudMusic = 944848654;
@@ -82,6 +81,8 @@
       "crane" #container image tool
       "terragrunt"
       "terraform"
+      "wireguard-tools"
+      "tw93/tap/mole"
     ];
 
     # `brew install --cask`
