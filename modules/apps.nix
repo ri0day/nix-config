@@ -111,6 +111,7 @@
       "dropbox"
       "tunnelblick@beta"
       "switchkey"
+      "keka@beta"
 
       "orbstack" #docker k8s on macos
       # Development
