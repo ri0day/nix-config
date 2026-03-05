@@ -1,4 +1,4 @@
-{pkgs, ...}: {
+{pkgs,claude-code, ...}: {
   ##########################################################################
   #
   #  Install all apps and packages here.
@@ -19,6 +19,7 @@
   environment.systemPackages = with pkgs; [
     neovim
     git
+    claude-code
     #python3
   ];
   environment.variables.EDITOR = "nvim";
@@ -32,7 +33,15 @@
     HOMEBREW_CORE_GIT_REMOTE = "https://mirrors.tuna.tsinghua.edu.cn/git/homebrew/homebrew-core.git";
     HOMEBREW_PIP_INDEX_URL = "https://pypi.tuna.tsinghua.edu.cn/simple";
   };
+  environment.etc."hosts" = {
+    text = ''
+      127.0.0.1	    localhost
+      255.255.255.255 broadcasthost
+      ::1             localhost
+      100.84.196.17 devopszoo.dala-scala.ts.net
 
+    '';
+  };
   # TODO To make this work, homebrew need to be installed manually, see https://brew.sh
   #
   # The apps installed by homebrew are not managed by nix, and not reproducible!

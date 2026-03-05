@@ -2,7 +2,7 @@
   home.packages = with pkgs; [
     nnn # terminal file manager
     python310
-    go_1_23
+    go
     difftastic
 
     # archives
@@ -61,6 +61,7 @@
     # productivity
     glow # markdown previewer in terminal
     nodejs_20
+    mosh
   ];
 
   programs = {
