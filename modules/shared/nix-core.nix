@@ -1,23 +1,24 @@
+{ pkgs, lib, isDarwin, ... }:
+
 {
-  pkgs,
-  lib,
-  ...
-}: {
   # enable flakes globally
-  nix.settings.experimental-features = ["nix-command" "flakes"];
+  nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
 
   # Auto upgrade nix package and the daemon service.
-  #services.nix-daemon.enable = true;
+  # services.nix-daemon.enable = true;
   # Use this instead of services.nix-daemon.enable if you
   # don't wan't the daemon service to be managed for you.
   # nix.useDaemon = true;
 
   nix.package = pkgs.nix;
   nix.optimise.automatic = true;
-  programs.nix-index.enable = true;
+
+  # nix-index is only available on Darwin
+  # On NixOS, it conflicts with programs.command-not-found
+  programs.nix-index.enable = lib.mkIf isDarwin true;
 
   # do garbage collection weekly to keep disk usage low
   nix.gc = {

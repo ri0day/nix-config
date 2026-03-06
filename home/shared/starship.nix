@@ -1,4 +1,6 @@
-{...}: {
+{ ... }:
+
+{
   programs.starship = {
     enable = true;
 
@@ -17,7 +19,7 @@
       gcloud = {
         # do not show the account/project's info
         # to avoid the leak of sensitive information when sharing the terminal
-        format = "on [$symbol$active(\($region\))]($style) ";
+        format = "on [$symbol$active(\\($region\\))]($style) ";
         symbol = "🅶 ️";
       };
     };

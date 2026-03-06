@@ -1,7 +1,9 @@
-{pkgs, ...}: {
+{ pkgs, ... }:
+
+{
   home.packages = with pkgs; [
     nnn # terminal file manager
-    python310
+    python3
     go
     difftastic
 
@@ -16,8 +18,8 @@
     jq # A lightweight and flexible command-line JSON processor
     yq-go # yaml processer https://github.com/mikefarah/yq
     fzf # A command-line fuzzy finder
-    inetutils #telnet
-    skim #try some modern commands
+    inetutils # telnet
+    skim # try some modern commands
     procs
     du-dust
     bottom-rs
@@ -36,7 +38,7 @@
     kubie
     k9s
     kubectl
-    kubernetes-helm 
+    kubernetes-helm
     kubeswitch
     sops
     age
@@ -45,7 +47,6 @@
     saml2aws
     croc
     ssm-session-manager-plugin
-
 
     # misc
     cowsay
@@ -78,15 +79,17 @@
       enable = true;
       enableBashIntegration = true;
     };
-    #zoxide replace cd
+
+    # zoxide replace cd
     zoxide = {
       enable = true;
       enableZshIntegration = true;
     };
+
     # commandline fixer
     thefuck = {
-       enable = true;
-       enableZshIntegration = true;
+      enable = true;
+      enableZshIntegration = true;
     };
   };
 }

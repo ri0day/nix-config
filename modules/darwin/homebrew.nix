@@ -1,15 +1,6 @@
-{pkgs, ...}: {
-  ##########################################################################
-  #
-  #  Install all apps and packages here.
-  #
-  #  NOTE: Your can find all available options in:
-  #    https://daiderd.com/nix-darwin/manual/index.html
-  #
-  # TODO Fell free to modify this file to fit your needs.
-  #
-  ##########################################################################
+{ pkgs, ... }:
 
+{
   # Install packages from nix's official package repository.
   #
   # The packages installed here are available to all users, and are reproducible across machines, and are rollbackable.
@@ -19,7 +10,7 @@
   environment.systemPackages = with pkgs; [
     neovim
     git
-    #python3
+    # python3
   ];
   environment.variables.EDITOR = "nvim";
 
@@ -32,15 +23,16 @@
     HOMEBREW_CORE_GIT_REMOTE = "https://mirrors.tuna.tsinghua.edu.cn/git/homebrew/homebrew-core.git";
     HOMEBREW_PIP_INDEX_URL = "https://pypi.tuna.tsinghua.edu.cn/simple";
   };
+
   environment.etc."hosts" = {
     text = ''
-      127.0.0.1	    localhost
+      127.0.0.1       localhost
       255.255.255.255 broadcasthost
       ::1             localhost
-      100.84.196.17 devopszoo.dala-scala.ts.net
-
+      100.84.196.17   devopszoo.dala-scala.ts.net
     '';
   };
+
   # TODO To make this work, homebrew need to be installed manually, see https://brew.sh
   #
   # The apps installed by homebrew are not managed by nix, and not reproducible!
@@ -60,8 +52,7 @@
     # For details, see https://github.com/mas-cli/mas
     masApps = {
       # TODO Feel free to add your favorite apps here.
-
-      #Xcode = 497799835;
+      # Xcode = 497799835;
       Wechat = 836500024;
       Bitwarden = 1352778147;
       # NeteaseCloudMusic = 944848654;
@@ -73,8 +64,7 @@
       # QQMusic = 595615424;
     };
 
-    taps = [
-    ];
+    taps = [ ];
 
     # `brew install`
     # TODO Feel free to add your favorite apps here.
@@ -83,7 +73,7 @@
       "curl" # no not install curl via nixpkgs, it's not working well on macOS!
       "aria2" # download tool
       "httpie" # http client
-      "crane" #container image tool
+      "crane" # container image tool
       "terragrunt"
       "terraform"
       "wireguard-tools"
@@ -104,23 +94,22 @@
 
       # IM & audio & remote desktop & meeting
       "telegram"
-      #"discord"
+      # "discord"
 
-      #"clashx" # proxy tool
+      # "clashx" # proxy tool
       "iina" # video player
       "openinterminal-lite" # open current folder in terminal
       "syncthing-app" # file sync
       "raycast"   # (HotKey: alt/option + space)search, caculate and run scripts(with many plugins)
       "eudic" # 欧路词典
-      "warp" #terminal
+      "warp" # terminal
       "dropbox"
       "tunnelblick@beta"
       "switchkey"
       "keka@beta"
       "claude-code"
 
-
-      "orbstack" #docker k8s on macos
+      "orbstack" # docker k8s on macos
       # Development
     ];
   };

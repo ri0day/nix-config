@@ -1,5 +1,5 @@
 {
-  description = "Nix for macOS configuration";
+  description = "Multi-host Nix configuration";
 
   ##################################################################################################################
   #
@@ -10,36 +10,40 @@
 
   # the nixConfig here only affects the flake itself, not the system configuration!
   nixConfig = {
-    experimental-features = ["nix-command" "flakes"];
-
+    experimental-features = [ "nix-command" "flakes" ];
   };
+
   # This is the standard format for flake.nix. `inputs` are the dependencies of the flake,
   # Each item in `inputs` will be passed as a parameter to the `outputs` function after being pulled and built.
   inputs = {
+    # Nixpkgs channels
     nixpkgs-darwin.url = "github:nixos/nixpkgs/nixpkgs-25.05-darwin";
-    nixpkgs = {
-      url = "github:nixos/nixpkgs/nixpkgs-unstable"; #use unstable channel by default
-    };
+    nixpkgs-nixos.url = "github:nixos/nixpkgs/nixos-25.05";
+    nixpkgs-unstable.url = "github:nixos/nixpkgs/nixpkgs-unstable";
 
-    # home-manager, used for managing user configuration
-    home-manager = {
-      url = "github:nix-community/home-manager/release-25.05";
-      # The `follows` keyword in inputs is used for inheritance.
-      # Here, `inputs.nixpkgs` of home-manager is kept consistent with the `inputs.nixpkgs` of the current flake,
-      # to avoid problems caused by different versions of nixpkgs dependencies.
-      inputs.nixpkgs.follows = "nixpkgs-darwin";
-    };
-
+    # Platform frameworks
     darwin = {
       url = "github:lnl7/nix-darwin/nix-darwin-25.05";
       inputs.nixpkgs.follows = "nixpkgs-darwin";
     };
 
-    sops-nix = {
-      url = "github:Mic92/sops-nix";
-      inputs.nixpkgs.follows = "nixpkgs";
+    # Home Manager
+    home-manager = {
+      url = "github:nix-community/home-manager/release-25.05";
+      inputs.nixpkgs.follows = "nixpkgs-darwin";
     };
 
+    # Secrets
+    sops-nix = {
+      url = "github:Mic92/sops-nix";
+      inputs.nixpkgs.follows = "nixpkgs-unstable";
+    };
+
+    # Deployment tools
+    deploy-rs = {
+      url = "github:serokell/deploy-rs";
+      inputs.nixpkgs.follows = "nixpkgs-unstable";
+    };
   };
 
   # The `outputs` function will return all the build results of the flake.
@@ -47,48 +51,104 @@
   # parameters in `outputs` are defined in `inputs` and can be referenced by their names.
   # However, `self` is an exception, this special parameter points to the `outputs` itself (self-reference)
   # The `@` syntax here is used to alias the attribute set of the inputs's parameter, making it convenient to use inside the function.
-  outputs = inputs @ {
-    self,
-    nixpkgs,
-    darwin,
-    sops-nix,
-    home-manager,
-    ...
-  }: let
-     username = "mason.wu";
-     useremail = "email@me.com";
-     system = "aarch64-darwin";
-     hostname = "m1max";
-     specialArgs = inputs // { inherit username useremail hostname;};
-  in {
-      darwinConfigurations."${hostname}" = darwin.lib.darwinSystem {
-      inherit system specialArgs;
-      modules = [
-        ./modules/nix-core.nix
-        ./modules/system.nix
-        ./modules/apps.nix
+  outputs = inputs @ { self, ... }:
+    let
+      # ============================================
+      # LIBRARY: Helper functions
+      # ============================================
+      lib = import ./lib { inherit inputs; };
 
-        ./modules/host-users.nix
-	sops-nix.darwinModules.sops #expose sops-nix to global system level
+      # ============================================
+      # HOST DEFINITIONS: Declare all hosts here
+      # ============================================
+      hosts = {
+        # Darwin hosts (full system config)
+        m1max = {
+          type = "darwin";
+          system = "aarch64-darwin";
+          username = "mason.wu";
+          useremail = "email@me.com";
+          modules = [ ./hosts/m1max ];
+        };
 
-        # home manager
-        home-manager.darwinModules.home-manager
-        {
-	  home-manager.sharedModules = [
-            sops-nix.homeManagerModules.sops     #expose sops-nix to home-manager level
-          ];
-          home-manager.useGlobalPkgs = true;
-          home-manager.useUserPackages = true;
+        work-mac = {
+          type = "darwin";
+          system = "aarch64-darwin";
+          username = "mason.wu";
+          useremail = "work@company.com";
+          modules = [ ./hosts/work-mac ];
+        };
 
-          home-manager.extraSpecialArgs = specialArgs;
+        # NixOS hosts (full system config)
+        nix-server = {
+          type = "nixos";
+          system = "x86_64-linux";
+          username = "mason";
+          useremail = "admin@example.com";
+          modules = [ ./hosts/nix-server ];
+          # Deploy-rs settings
+          deploy = {
+            hostname = "192.168.1.100";
+            sshUser = "mason";
+          };
+        };
 
-          home-manager.users.${username} = import ./home;
+        # Non-NixOS Linux hosts (Home Manager standalone)
+        ubuntu-server = {
+          type = "linux";  # Home Manager standalone
+          system = "x86_64-linux";
+          username = "mason";
+          useremail = "admin@example.com";
+          modules = [ ./hosts/ubuntu-server ];
+          # Deploy-rs settings
+          deploy = {
+            hostname = "192.168.1.101";
+            sshUser = "mason";
+          };
+        };
+      };
+
+      # ============================================
+      # GENERATE OUTPUTS: Create configurations
+      # ============================================
+      darwinHosts = lib.filterHostsByType hosts "darwin";
+      nixosHosts = lib.filterHostsByType hosts "nixos";
+      linuxHosts = lib.filterHostsByType hosts "linux";
+
+    in {
+      # Darwin configurations (nix-darwin)
+      darwinConfigurations = lib.lib.mapAttrs (name: config:
+        lib.mkDarwinHost {
+          inherit name;
+          inherit (config) system username useremail modules;
         }
-      ];
-    };
+      ) darwinHosts;
 
-    # nix codee formmater
-    formatter.${system} = nixpkgs.legacyPackages.${system}.alejandra;
-    ids.gids.nixbld = 350;
-  };
+      # NixOS configurations (full system)
+      nixosConfigurations = lib.lib.mapAttrs (name: config:
+        lib.mkNixosHost {
+          inherit name;
+          inherit (config) system username useremail modules;
+        }
+      ) nixosHosts;
+
+      # Home Manager standalone configurations (for non-NixOS Linux)
+      homeConfigurations = lib.lib.mapAttrs (name: config:
+        lib.mkLinuxHost {
+          inherit name;
+          inherit (config) system username useremail modules;
+        }
+      ) linuxHosts;
+
+      # Deploy-rs nodes for remote deployment
+      deploy.nodes = lib.mkDeployNodes (darwinHosts // nixosHosts // linuxHosts);
+
+      # Formatter
+      formatter.aarch64-darwin = inputs.nixpkgs-unstable.legacyPackages.aarch64-darwin.alejandra;
+      formatter.x86_64-darwin = inputs.nixpkgs-unstable.legacyPackages.x86_64-darwin.alejandra;
+      formatter.x86_64-linux = inputs.nixpkgs-unstable.legacyPackages.x86_64-linux.alejandra;
+
+      # nix-darwin requires this
+      ids.gids.nixbld = 350;
+    };
 }

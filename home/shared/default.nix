@@ -1,23 +1,21 @@
-{ username, ...}:
+{ username, isDarwin, ... }:
 
 {
-  # import sub modules
   imports = [
-    ./zsh.nix
-    ./bash.nix
-    ./core.nix
+    ./cli-tools.nix
+    ./shells/zsh.nix
+    ./shells/bash.nix
     ./git.nix
     ./ssh.nix
     ./starship.nix
-    ./secrets.nix	
+    ./secrets.nix
   ];
 
   # Home Manager needs a bit of information about you and the
   # paths it should manage.
   home = {
     username = username;
-    homeDirectory = "/Users/${username}";
-
+    homeDirectory = if isDarwin then "/Users/${username}" else "/home/${username}";
     stateVersion = "25.05";
   };
 

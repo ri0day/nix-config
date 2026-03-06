@@ -1,5 +1,5 @@
 #
-#  NOTE: Makefile's target name should not be the same as one of the file or directory in the current directory, 
+#  NOTE: Makefile's target name should not be the same as one of the file or directory in the current directory,
 #    otherwise the target will not be executed!
 #
 
@@ -16,19 +16,57 @@ proxy = "http://127.0.0.1:7890"
 useproxy:
 	sudo python3 scripts/darwin_set_proxy.py $(proxy)
 
-darwin:
-	# TODO update hostname here!
-	nix build .#darwinConfigurations.m1max.system \
-		--extra-experimental-features 'nix-command flakes'
+# Darwin hosts
+darwin-m1max:
+	darwin-rebuild switch --flake .#m1max
 
-	sudo ./result/sw/bin/darwin-rebuild switch --flake .#m1max
+darwin-work-mac:
+	darwin-rebuild switch --flake .#work-mac
 
 darwin-debug:
-	# TODO update hostname here!
-	nix build .#darwinConfigurations."m1max".system --show-trace --verbose \
-		--extra-experimental-features 'nix-command flakes'
+	darwin-rebuild switch --flake .#m1max --show-trace --verbose
 
-	./result/sw/bin/darwin-rebuild switch --flake .#m1max --show-trace --verbose
+############################################################################
+#
+#  NixOS related commands
+#
+############################################################################
+
+nixos-nix-server:
+	sudo nixos-rebuild switch --flake .#nix-server
+
+nixos-debug:
+	sudo nixos-rebuild switch --flake .#nix-server --show-trace --verbose
+
+############################################################################
+#
+#  Home Manager standalone commands (for non-NixOS Linux)
+#
+############################################################################
+
+home-ubuntu-server:
+	home-manager switch --flake .#ubuntu-server
+
+home-debug:
+	home-manager switch --flake .#ubuntu-server --show-trace --verbose
+
+############################################################################
+#
+#  Deploy-rs commands (remote deployment)
+#
+############################################################################
+
+deploy-m1max:
+	nix run .#deploy-rs -- .#m1max
+
+deploy-nix-server:
+	nix run .#deploy-rs -- .#nix-server
+
+deploy-ubuntu-server:
+	nix run .#deploy-rs -- .#ubuntu-server
+
+deploy-all:
+	nix run .#deploy-rs -- .
 
 ############################################################################
 #
@@ -36,16 +74,18 @@ darwin-debug:
 #
 ############################################################################
 
-
 update:
 	nix flake update
+
+update-input:
+	nix flake lock --update-input $(input)
 
 history:
 	nix profile history --profile /nix/var/nix/profiles/system
 
 gc:
 	# remove all generations older than 7 days
-	sudo nix profile wipe-history --profile /nix/var/nix/profiles/system  --older-than 7d
+	sudo nix profile wipe-history --profile /nix/var/nix/profiles/system --older-than 7d
 
 	# garbage collect all unused nix store entries
 	sudo nix store gc --debug
@@ -54,6 +94,9 @@ fmt:
 	# format the nix files in this repo
 	nix fmt
 
-.PHONY: clean  
-clean:  
+check:
+	nix flake check
+
+.PHONY: clean
+clean:
 	rm -rf result

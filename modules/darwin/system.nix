@@ -1,26 +1,21 @@
-{pkgs,username, ...}:
-###################################################################################
-#
-#  macOS's System configuration
-#
-#  All the configuration options are documented here:
-#    https://daiderd.com/nix-darwin/manual/index.html#sec-options
-#  and see the source code of this project to get more undocumented options:
-#    https://github.com/rgcr/m-cli
-#
-###################################################################################
+{ pkgs, username, hostname, ... }:
+
 {
+  # Darwin-specific hostname configuration
+  networking.computerName = hostname;
+  system.defaults.smb.NetBIOSName = hostname;
+
   system = {
-    primaryUser = username; 
+    primaryUser = username;
     stateVersion = 6;
-    
+
     # activationScripts are executed every time you boot the system or run `nixos-rebuild` / `darwin-rebuild`.
-    #activationScripts.postUserActivation.text = ''
-      # activateSettings -u will reload the settings from the database and apply them to the current session,
-      # so we do not need to logout and login again to make the changes take effect.
-      #/System/Library/PrivateFrameworks/SystemAdministration.framework/Resources/activateSettings -u
-    #'';
-    # check https://github.com/ryan4yin/nix-darwin-kickstarter/pull/18/files
+    # activationScripts.postUserActivation.text = ''
+    #   # activateSettings -u will reload the settings from the database and apply them to the current session,
+    #   # so we do not need to logout and login again to make the changes take effect.
+    #   /System/Library/PrivateFrameworks/SystemAdministration.framework/Resources/activateSettings -u
+    # '';
+
     defaults = {
       # menuExtraClock.Show24Hour = true;  # show 24 hour clock
 
@@ -30,10 +25,10 @@
         show-recents = false; # disable recent apps
 
         # customize Hot Corners(触发角, 鼠标移动到屏幕角落时触发的动作)
-        #wvous-tl-corner = 2; # top-left - Mission Control
-        #wvous-tr-corner = 13; # top-right - Lock Screen
-        #wvous-bl-corner = 3; # bottom-left - Application Windows
-        #wvous-br-corner = 4; # bottom-right - Desktop
+        # wvous-tl-corner = 2; # top-left - Mission Control
+        # wvous-tr-corner = 13; # top-right - Lock Screen
+        # wvous-bl-corner = 3; # bottom-left - Application Windows
+        # wvous-br-corner = 4; # bottom-right - Desktop
       };
 
       # customize finder
@@ -63,7 +58,7 @@
         AppleKeyboardUIMode = 3; # Mode 3 enables full keyboard control.
         ApplePressAndHoldEnabled = true; # enable press and hold
 
-        # If you press and hold certain keyboard keys when in a text area, the key’s character begins to repeat.
+        # If you press and hold certain keyboard keys when in a text area, the key's character begins to repeat.
         # This is very useful for vim users, they use `hjkl` to move cursor.
         # sets how long it takes before it starts repeating.
         InitialKeyRepeat = 15; # normal minimum is 15 (225 ms), maximum is 120 (1800 ms)
@@ -149,14 +144,12 @@
   };
 
   # Add ability to used TouchID for sudo authentication
-  #security.pam.enableSudoTouchIdAuth = true;
+  # security.pam.enableSudoTouchIdAuth = true;
 
   # Create /etc/zshrc that loads the nix-darwin environment.
   # this is required if you want to use darwin's default shell - zsh
   programs.zsh.enable = true;
-  environment.shells = [
-    pkgs.zsh
-  ];
+  environment.shells = [ pkgs.zsh ];
 
   # Set your time zone.
   # comment this due to the issue:
@@ -166,12 +159,10 @@
   # Fonts
   fonts = {
     # use fonts specified by user rather than default ones
-
     packages = with pkgs; [
       # icon fonts
       material-design-icons
       nerd-fonts.jetbrains-mono
-
     ];
   };
 }
