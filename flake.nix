@@ -40,10 +40,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    claude-code = { 
-      url = "github:sadjow/claude-code-nix";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
   };
 
   # The `outputs` function will return all the build results of the flake.
@@ -57,7 +53,6 @@
     darwin,
     sops-nix,
     home-manager,
-    claude-code,
     ...
   }: let
      username = "mason.wu";

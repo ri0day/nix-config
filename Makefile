@@ -21,7 +21,7 @@ darwin:
 	nix build .#darwinConfigurations.m1max.system \
 		--extra-experimental-features 'nix-command flakes'
 
-	./result/sw/bin/darwin-rebuild switch --flake .#m1max
+	sudo ./result/sw/bin/darwin-rebuild switch --flake .#m1max
 
 darwin-debug:
 	# TODO update hostname here!

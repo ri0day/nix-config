@@ -1,4 +1,4 @@
-{pkgs,claude-code, ...}: {
+{pkgs, ...}: {
   ##########################################################################
   #
   #  Install all apps and packages here.
@@ -19,7 +19,6 @@
   environment.systemPackages = with pkgs; [
     neovim
     git
-    claude-code
     #python3
   ];
   environment.variables.EDITOR = "nvim";
@@ -50,7 +49,7 @@
     enable = true;
 
     onActivation = {
-      autoUpdate = false;
+      autoUpdate = true;
       # 'zap': uninstalls all formulae(and related files) not listed here.
       cleanup = "zap";
     };
@@ -75,9 +74,6 @@
     };
 
     taps = [
-      "homebrew/cask-fonts"
-      "homebrew/services"
-      "homebrew/cask-versions"
     ];
 
     # `brew install`
@@ -121,6 +117,8 @@
       "tunnelblick@beta"
       "switchkey"
       "keka@beta"
+      "claude-code"
+
 
       "orbstack" #docker k8s on macos
       # Development
