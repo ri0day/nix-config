@@ -4,12 +4,18 @@
   # ============================================
   # Host-specific system configuration
   # ============================================
-  # Add any m1max-specific system config here
+  # Homebrew packages for this host only
+  homebrew.brews = [ "rtk" ];
 
   # ============================================
   # Home Manager configuration for this host
   # ============================================
   home-manager.users.${username} = {
+    # Host-specific packages
+    home.packages = with pkgs; [
+      fastfetch
+    ];
+
     # Host-specific git config
     programs.git = {
       userName = "Mason Wu";

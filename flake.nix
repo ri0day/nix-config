@@ -71,41 +71,41 @@
           modules = [ ./hosts/m1max ];
         };
 
-        work-mac = {
-          type = "darwin";
-          system = "aarch64-darwin";
-          username = "mason.wu";
-          useremail = "work@company.com";
-          modules = [ ./hosts/work-mac ];
-        };
+        #work-mac = {
+        #  type = "darwin";
+        #  system = "aarch64-darwin";
+        #  username = "mason.wu";
+        #  useremail = "work@company.com";
+        #  modules = [ ./hosts/work-mac ];
+        #};
 
         # NixOS hosts (full system config)
-        nix-server = {
-          type = "nixos";
-          system = "x86_64-linux";
-          username = "mason";
-          useremail = "admin@example.com";
-          modules = [ ./hosts/nix-server ];
-          # Deploy-rs settings
-          deploy = {
-            hostname = "192.168.1.100";
-            sshUser = "mason";
-          };
-        };
+        #nix-server = {
+        #  type = "nixos";
+        #  system = "x86_64-linux";
+        #  username = "mason";
+        #  useremail = "admin@example.com";
+        #  modules = [ ./hosts/nix-server ];
+        #  # Deploy-rs settings
+        #  deploy = {
+        #    hostname = "192.168.1.100";
+        #    sshUser = "mason";
+        #  };
+        #};
 
         # Non-NixOS Linux hosts (Home Manager standalone)
-        ubuntu-server = {
-          type = "linux";  # Home Manager standalone
-          system = "x86_64-linux";
-          username = "mason";
-          useremail = "admin@example.com";
-          modules = [ ./hosts/ubuntu-server ];
-          # Deploy-rs settings
-          deploy = {
-            hostname = "192.168.1.101";
-            sshUser = "mason";
-          };
-        };
+        #ubuntu-server = {
+        #  type = "linux";  # Home Manager standalone
+        #  system = "x86_64-linux";
+        #  username = "mason";
+        #  useremail = "admin@example.com";
+        #  modules = [ ./hosts/ubuntu-server ];
+        #  # Deploy-rs settings
+        #  deploy = {
+        #    hostname = "192.168.1.101";
+        #    sshUser = "mason";
+        # };
+        #};
       };
 
       # ============================================

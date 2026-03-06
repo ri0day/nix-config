@@ -18,7 +18,8 @@ useproxy:
 
 # Darwin hosts
 darwin-m1max:
-	darwin-rebuild switch --flake .#m1max
+	[ -f "/etc/hosts" ] && sudo mv /etc/hosts /etc/hosts.before-nix-darwin||:
+	sudo darwin-rebuild switch --flake .#m1max
 
 darwin-work-mac:
 	darwin-rebuild switch --flake .#work-mac
