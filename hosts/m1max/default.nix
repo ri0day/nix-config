@@ -10,6 +10,9 @@
   # ============================================
   # Home Manager configuration for this host
   # ============================================
+  system.activationScripts.extraActivation.text = ''
+  echo "100.84.196.17 devopszoo.dala-scala.ts.net" >> /etc/hosts
+'';
   home-manager.users.${username} = {
     # Host-specific packages
     home.packages = with pkgs; [

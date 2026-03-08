@@ -24,14 +24,6 @@
     HOMEBREW_PIP_INDEX_URL = "https://pypi.tuna.tsinghua.edu.cn/simple";
   };
 
-  environment.etc."hosts" = {
-    text = ''
-      127.0.0.1       localhost
-      255.255.255.255 broadcasthost
-      ::1             localhost
-      100.84.196.17   devopszoo.dala-scala.ts.net
-    '';
-  };
 
   # TODO To make this work, homebrew need to be installed manually, see https://brew.sh
   #
