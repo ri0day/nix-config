@@ -70,6 +70,7 @@
       "terraform"
       "wireguard-tools"
       "tw93/tap/mole"
+      "mas"
     ];
 
     # `brew install --cask`
