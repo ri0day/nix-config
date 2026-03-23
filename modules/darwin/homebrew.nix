@@ -67,7 +67,7 @@
       "httpie" # http client
       "crane" # container image tool
       "terragrunt"
-      "terraform"
+      "opentofu"
       "wireguard-tools"
       "tw93/tap/mole"
       "mas"

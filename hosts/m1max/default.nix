@@ -5,7 +5,11 @@
   # Host-specific system configuration
   # ============================================
   # Homebrew packages for this host only
-  homebrew.brews = [ "rtk" ];
+  homebrew.brews = [ "rtk" "saml2aws" ];
+  homebrew.masApps = {
+     TencentMeetting = 1484048379 ; #腾讯会议
+    };
+  homebrew.casks = ["ghostty"];
 
   # ============================================
   # Home Manager configuration for this host
