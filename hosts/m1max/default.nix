@@ -8,6 +8,7 @@
   homebrew.brews = [ "rtk" "saml2aws" ];
   homebrew.masApps = {
      TencentMeetting = 1484048379 ; #腾讯会议
+     DingTalk = 1435447041; 
     };
   homebrew.casks = ["ghostty"];
 
