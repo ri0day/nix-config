@@ -83,7 +83,6 @@
       "stats"
       "shottr"
       "marta"
-      "motrix"
 
       # IM & audio & remote desktop & meeting
       "telegram"
