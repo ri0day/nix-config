@@ -5,7 +5,7 @@
   # Host-specific system configuration
   # ============================================
   # Homebrew packages for this host only
-  homebrew.brews = [ "rtk" "saml2aws" ];
+  homebrew.brews = [ "rtk" "saml2aws" "witr"];
   homebrew.masApps = {
      TencentMeetting = 1484048379 ; #腾讯会议
      DingTalk = 1435447041; 
